@@ -6,7 +6,7 @@ import retrofit2.http.GET
 import retrofit2.http.Query
 
 interface GameApi {
-    @GET("/games")
+    @GET("/api/games")
     suspend fun getGames(
         @Query("page_size")
         qty: Int
