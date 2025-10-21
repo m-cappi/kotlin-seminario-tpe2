@@ -10,6 +10,7 @@ activityCompose = "1.11.0"
 composeBom = "2024.09.00"
 hiltVersion = "2.51.1"
 kaptVersion = "2.0.20"
+retorfit = "2.11.0"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -28,6 +29,8 @@ androidx-ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit
 androidx-material3 = { group = "androidx.compose.material3", name = "material3" }
 hilt = { module = "com.google.dagger:hilt-android", version.ref = "hiltVersion" }
 hilt-compiler = { module = "com.google.dagger:hilt-compiler", version.ref = "hiltVersion" }
+retrofit = { module = "com.squareup.retrofit2:retrofit", version.ref = "retorfit" }
+retrofit-gson = { module = "com.squareup.retrofit2:converter-gson", version.ref = "retorfit" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
