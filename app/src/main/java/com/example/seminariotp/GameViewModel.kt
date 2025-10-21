@@ -25,7 +25,6 @@ class GameViewModel @Inject  constructor(
         viewModelScope.launch {
             _loading.value = true
             _error.value = false
-            _games.value = null
             val games = gameRepository.getGames(qty)
             _loading.value = false
             _games.value = games
