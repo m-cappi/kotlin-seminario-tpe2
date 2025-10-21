@@ -35,6 +35,7 @@ hilt-compiler = { module = "com.google.dagger:hilt-compiler", version.ref = "hil
 retrofit = { module = "com.squareup.retrofit2:retrofit", version.ref = "retorfit" }
 retrofit-gson = { module = "com.squareup.retrofit2:converter-gson", version.ref = "retorfit" }
 coil = { group = "io.coil-kt.coil3", name = "coil-compose", version.ref = "coil" }
+coil-network = { group = "io.coil-kt.coil3", name = "coil-network-okhttp", version.ref = "coil" }
 navigation-compose = { group = "androidx.navigation", name = "navigation-compose", version.ref = "compose-navigation" }
 logging-interceptor = { group = "com.squareup.okhttp3", name = "logging-interceptor", version.ref = "ok-http" }
 
