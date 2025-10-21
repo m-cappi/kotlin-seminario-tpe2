@@ -11,6 +11,7 @@ composeBom = "2024.09.00"
 hiltVersion = "2.51.1"
 kaptVersion = "2.0.20"
 retorfit = "2.11.0"
+coil="3.3.0"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -31,6 +32,7 @@ hilt = { module = "com.google.dagger:hilt-android", version.ref = "hiltVersion" 
 hilt-compiler = { module = "com.google.dagger:hilt-compiler", version.ref = "hiltVersion" }
 retrofit = { module = "com.squareup.retrofit2:retrofit", version.ref = "retorfit" }
 retrofit-gson = { module = "com.squareup.retrofit2:converter-gson", version.ref = "retorfit" }
+coil = {group = "io.coil-kt.coil3", name="coil-compose", version.ref = "coil"}
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
