@@ -6,19 +6,38 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
+import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 @Module
 @InstallIn(SingletonComponent::class)
 class GameModule {
+
     @Provides
-    fun providesRetrofit(): Retrofit{
+    fun provideApiKeyInterceptor(): ApiKeyInterceptor {
+        return ApiKeyInterceptor(BuildConfig.GAMES_API_KEY)
+    }
+
+    @Provides
+    fun provideOkHttpClient(
+        apiKeyInterceptor: ApiKeyInterceptor
+    ): OkHttpClient {
+        return OkHttpClient.Builder()
+            .addInterceptor(apiKeyInterceptor)
+            .build()
+    }
+
+    @Provides
+    fun providesRetrofit(
+        okHttpClient: OkHttpClient
+    ): Retrofit {
         return Retrofit.Builder()
             .baseUrl(BuildConfig.GAMES_API_URL)
             .addConverterFactory(
                 GsonConverterFactory.create()
             )
+            .client(okHttpClient)
             .build()
     }
 
