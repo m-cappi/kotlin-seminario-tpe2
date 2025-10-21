@@ -1,12 +1,15 @@
 package com.example.seminariotp.ui.games
 
 
+import androidx.compose.foundation.layout.Arrangement
 import com.example.seminariotp.R
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -32,7 +35,12 @@ fun GamesContent(
     onFiltersClick: () -> Unit,
 ) {
     Column(modifier = Modifier.fillMaxSize()) {
-        Row {
+        Spacer(modifier = Modifier.height(32.dp))
+
+        Row (
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.SpaceAround
+        ){
             Button(onClick = onRefreshGames) {
                 Text(
                     text = stringResource(R.string.refresh_games)
@@ -82,7 +90,21 @@ private fun PreviewGamesContent() {
                 imageUrl = "not found",
                 rating = 7.7,
                 platforms = listOf("pc"),
-            )
+            ),Game(
+                id = 0,
+                name = "Best game",
+                releaseDate = "sometime ago",
+                imageUrl = "not found",
+                rating = 7.7,
+                platforms = listOf("pc"),
+            ),Game(
+                id = 0,
+                name = "Best game",
+                releaseDate = "sometime ago",
+                imageUrl = "not found",
+                rating = 7.7,
+                platforms = listOf("pc"),
+            ),
         ),
         onRefreshGames = {},
         onFiltersClick = {},
