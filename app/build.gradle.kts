@@ -5,7 +5,9 @@ plugins {
     alias(libs.plugins.hilt)
     alias(libs.plugins.kapt)
 }
-
+val versionMajor = 1
+val versionMinor = 0
+val versionPatch = 0
 android {
     namespace = "com.example.seminariotp"
     compileSdk = 36
@@ -14,8 +16,9 @@ android {
         applicationId = "com.example.seminariotp"
         minSdk = 28
         targetSdk = 36
-        versionCode = 1
-        versionName = "1.0"
+        versionCode = versionMajor * 100 + versionMinor * 10 + versionPatch
+        versionName = "${versionMajor}.${versionMinor}.${versionPatch}"
+
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
