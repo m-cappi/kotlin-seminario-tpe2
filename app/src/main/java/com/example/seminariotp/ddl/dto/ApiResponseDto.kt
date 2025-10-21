@@ -1,7 +1,7 @@
 package com.example.seminariotp.ddl.dto
 import com.google.gson.annotations.SerializedName
 
-data class ApiResponseDto(
+data class ApiResponseDto<T>(
     @SerializedName("count")
     val count: Int? = null,
     @SerializedName("next")
@@ -9,7 +9,7 @@ data class ApiResponseDto(
     @SerializedName("previous")
     val previous: String? = null,
     @SerializedName("results")
-    val results: List<GameDto>? = null
+    val results: List<T>? = null
 )
 
 

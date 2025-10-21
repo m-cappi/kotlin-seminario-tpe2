@@ -1,6 +1,7 @@
 package com.example.seminariotp.ddl
 
 import com.example.seminariotp.ddl.dto.ApiResponseDto
+import com.example.seminariotp.ddl.dto.GameDto
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Query
@@ -10,5 +11,7 @@ interface GameApi {
     suspend fun getGames(
         @Query("page_size")
         qty: Int
-    ): Response<ApiResponseDto>
+    ): Response<ApiResponseDto<GameDto>>
+
+
 }
