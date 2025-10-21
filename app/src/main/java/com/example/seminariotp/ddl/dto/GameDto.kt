@@ -1,5 +1,6 @@
 package com.example.seminariotp.ddl.dto
 
+import com.example.seminariotp.ddl.models.Game
 import com.google.gson.annotations.SerializedName
 
 
@@ -42,4 +43,16 @@ data class GameDto(
     val esrbRating: EsrbRatingDto? = null,
     @SerializedName("platforms")
     val platforms: List<PlatformWrapperDto>? = null
-)
+){
+    fun toDomain(): Game {
+        return Game(
+            id = id ?: 0,
+            name = name.orEmpty(),
+            releaseDate = released.orEmpty(),
+            imageUrl = backgroundImage,
+            rating = rating ?: 0.0,
+            platforms = platforms?.mapNotNull { it.platform?.name } ?: emptyList(),
+            esrbRating = esrbRating?.name
+        )
+    }
+}
