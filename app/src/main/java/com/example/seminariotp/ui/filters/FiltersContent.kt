@@ -42,6 +42,7 @@ fun FiltersContent(
             .fillMaxWidth()
             .padding(8.dp)
     ) {
+        Spacer(modifier = Modifier.height(32.dp))
         Button(onClick = onApplyFilters, enabled = !isLoading) {
             Text(
                 text = stringResource(R.string.apply)
