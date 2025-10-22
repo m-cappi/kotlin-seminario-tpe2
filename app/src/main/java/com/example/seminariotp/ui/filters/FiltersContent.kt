@@ -58,7 +58,7 @@ fun FiltersContent(
         Spacer(modifier = Modifier.height(32.dp))
 
         Text(
-            text = "Filter by",
+            text = stringResource(R.string.filter_by),
             style = MaterialTheme.typography.titleMedium,
             modifier = Modifier.padding(bottom = 8.dp)
         )

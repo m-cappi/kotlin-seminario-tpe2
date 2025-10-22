@@ -4,5 +4,10 @@
     <string name="apply">Apply</string>
     <string name="error_msg">Ups! Something went wrong</string>
     <string name="retry">Try again</string>
+    <string name="filter_by">Filter by</string>
+    <string name="order_by">Order by</string>
+    <string name="release_date">Released: %1$s</string>
+    <string name="rating_double">Rating: %.2f</string>
+
 
 </resources>
