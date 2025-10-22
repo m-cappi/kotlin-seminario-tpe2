@@ -3,6 +3,7 @@ package com.example.seminariotp.ui.filters
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
@@ -16,6 +17,7 @@ fun FiltersScreen(
     goGames: (GamesRoute) -> Unit
 ) {
     val isLoading by viewModel.loading.collectAsStateWithLifecycle()
+    val isError by viewModel.error.collectAsStateWithLifecycle()
     val genres by viewModel.genres.collectAsStateWithLifecycle()
     val platforms by viewModel.platforms.collectAsStateWithLifecycle()
     val publishers by viewModel.publishers.collectAsStateWithLifecycle()
@@ -34,8 +36,9 @@ fun FiltersScreen(
         listOf("name", "released", "added", "created", "updated", "rating", "metacritic")
     var selectedOrderBy by remember { mutableStateOf("") }
     var isReverseOrder by remember { mutableStateOf(false) }
+    var retryTrigger by remember { mutableIntStateOf(0) }
 
-    LaunchedEffect(selectedCategory) {
+    LaunchedEffect(selectedCategory, retryTrigger) {
         when (selectedCategory) {
             "Genres" -> viewModel.getGenres(20)
             "Platforms" -> viewModel.getPlatforms(20)
@@ -59,6 +62,7 @@ fun FiltersScreen(
 
     FiltersContent(
         isLoading = isLoading,
+        isError = isError,
         filtersMap = filtersMap,
         categories = categories,
         selectedCategory = selectedCategory,
@@ -75,6 +79,7 @@ fun FiltersScreen(
             selectedOrderBy = newOrder
             isReverseOrder = newReverse
         },
-        onApplyFilters = onApplyFilters
+        onApplyFilters = onApplyFilters,
+        onRetry = { retryTrigger++ }
     )
 }

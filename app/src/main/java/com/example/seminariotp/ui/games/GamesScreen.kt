@@ -14,6 +14,7 @@ fun GamesScreen(
 ) {
     val isLoading by viewModel.loading.collectAsStateWithLifecycle()
     val games by viewModel.games.collectAsStateWithLifecycle()
+    val isError by viewModel.error.collectAsStateWithLifecycle()
 
     LaunchedEffect(Unit) {
         viewModel.getGames(50, gamesRoute)
@@ -21,6 +22,7 @@ fun GamesScreen(
 
     GamesContent(
         isLoading = isLoading,
+        isError = isError,
         games = games.orEmpty(),
         onRefreshGames = {
             viewModel.getGames(50, gamesRoute)

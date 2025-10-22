@@ -2,4 +2,7 @@
     <string name="app_name">SeminarioTP</string>
     <string name="refresh_games">Refresh</string>
     <string name="apply">Apply</string>
+    <string name="error_msg">Ups! Something went wrong</string>
+    <string name="retry">Try again</string>
+
 </resources>

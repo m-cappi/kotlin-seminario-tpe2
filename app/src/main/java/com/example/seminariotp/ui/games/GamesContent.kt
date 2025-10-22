@@ -30,6 +30,7 @@ import com.example.seminariotp.ddl.models.Game
 @Composable
 fun GamesContent(
     isLoading: Boolean,
+    isError: Boolean,
     games: List<Game>,
     onRefreshGames: () -> Unit,
     onFiltersClick: () -> Unit,
@@ -56,6 +57,10 @@ fun GamesContent(
 
         if (isLoading) {
             CircularProgressIndicator()
+        } else if (isError) {
+            Text(
+                text = stringResource(R.string.error_msg)
+            )
         } else {
             LazyColumn(
                 modifier = Modifier
@@ -82,6 +87,7 @@ fun GamesContent(
 private fun PreviewGamesContent() {
     GamesContent(
         isLoading = false,
+        isError = false,
         games = listOf(
             Game(
                 id = 0,

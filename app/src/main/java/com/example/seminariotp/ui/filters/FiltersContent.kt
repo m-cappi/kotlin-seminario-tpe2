@@ -19,6 +19,7 @@ import com.example.seminariotp.ddl.models.Filter
 @Composable
 fun FiltersContent(
     isLoading: Boolean,
+    isError: Boolean,
     filtersMap: Map<String, List<Filter>?>,
     categories: List<String>,
     selectedCategory: String,
@@ -29,7 +30,8 @@ fun FiltersContent(
     selectedOrderBy: String,
     isReverseOrder: Boolean,
     onOrderChange: (String, Boolean) -> Unit,
-    onApplyFilters: () -> Unit
+    onApplyFilters: () -> Unit,
+    onRetry: () -> Unit,
 ) {
     // Example categories
 
@@ -69,15 +71,19 @@ fun FiltersContent(
         Spacer(modifier = Modifier.height(16.dp))
         if (isLoading) {
             CircularProgressIndicator()
+        } else if (isError) {
+            Text(
+                text = stringResource(R.string.error_msg)
+            )
+            Button(onClick = onRetry) {
+                Text(text = stringResource(R.string.retry))
+            }
         } else {
             MultiSelectFilterList(
                 category = selectedCategory,
                 filters = filtersMap[selectedCategory] ?: emptyList(),
                 selectedFilters = selectedFilters,
                 onSelectionChanged = onSelectionChanged
-            )
-            Text(
-                text = selectedFilters.toString()
             )
         }
     }
