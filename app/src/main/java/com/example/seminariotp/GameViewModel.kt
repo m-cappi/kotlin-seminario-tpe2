@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.seminariotp.ddl.GameRepository
 import com.example.seminariotp.ddl.models.Game
+import com.example.seminariotp.ui.games.GamesRoute
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -12,7 +13,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class GameViewModel @Inject constructor(
-    private val gameRepository: GameRepository
+    private val gameRepository: GameRepository,
 ) : ViewModel() {
     private val _loading = MutableStateFlow(false)
     val loading = _loading.asStateFlow()
@@ -21,15 +22,15 @@ class GameViewModel @Inject constructor(
     private val _games = MutableStateFlow<List<Game>?>(null)
     val games = _games.asStateFlow()
 
-    fun getGames(qty: Int) {
+
+    fun getGames(qty: Int, route: GamesRoute?) {
         viewModelScope.launch {
             _loading.value = true
             _error.value = false
-            val games = gameRepository.getGames(qty)
+            val games = gameRepository.getGames(qty, route)
             _loading.value = false
             _games.value = games
             _error.value = games == null
         }
     }
-
 }

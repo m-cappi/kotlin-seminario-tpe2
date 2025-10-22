@@ -1,14 +1,15 @@
 package com.example.seminariotp
 
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
+import androidx.compose.runtime.LaunchedEffect
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import androidx.navigation.toRoute
 import com.example.seminariotp.ui.filters.FiltersScreen
 import com.example.seminariotp.ui.games.GamesRoute
 import com.example.seminariotp.ui.games.GamesScreen
@@ -29,8 +30,11 @@ class MainActivity : ComponentActivity() {
                     route = "games",
                 ) { navBackStackEntry ->
                     val savedStateHandle = navBackStackEntry.savedStateHandle
-                    val route: GamesRoute =
-                        savedStateHandle.get<GamesRoute>("gamesRoute") ?: GamesRoute()
+                    val route: GamesRoute? =
+                        savedStateHandle.get<GamesRoute>("gamesRoute")
+                    LaunchedEffect(route) {
+                        Log.d("GamesScreen", "Route received: $route")
+                    }
                     GamesScreen(
                         viewModel = gameViewModel,
                         gamesRoute = route,
@@ -43,10 +47,11 @@ class MainActivity : ComponentActivity() {
                     FiltersScreen(
                         filtersViewModel,
                         goGames = { gamesRoute ->
-                            navController.currentBackStackEntry
+                            navController.previousBackStackEntry
                                 ?.savedStateHandle
                                 ?.set("gamesRoute", gamesRoute)
-                            navController.navigate(route = "games")
+
+                            navController.popBackStack()
                         }
                     )
                 }

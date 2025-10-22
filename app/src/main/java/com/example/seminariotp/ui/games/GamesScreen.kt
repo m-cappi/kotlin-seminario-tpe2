@@ -9,21 +9,21 @@ import com.example.seminariotp.GameViewModel
 @Composable
 fun GamesScreen(
     viewModel: GameViewModel,
-    gamesRoute: GamesRoute,
+    gamesRoute: GamesRoute?,
     goFilters: () -> Unit
 ) {
     val isLoading by viewModel.loading.collectAsStateWithLifecycle()
     val games by viewModel.games.collectAsStateWithLifecycle()
 
     LaunchedEffect(Unit) {
-        viewModel.getGames(50)
+        viewModel.getGames(50, gamesRoute)
     }
 
     GamesContent(
         isLoading = isLoading,
         games = games.orEmpty(),
         onRefreshGames = {
-            viewModel.getGames(50)
+            viewModel.getGames(50, gamesRoute)
         },
         onFiltersClick = goFilters,
     )

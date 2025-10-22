@@ -8,7 +8,6 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.example.seminariotp.FiltersViewModel
-import com.example.seminariotp.ddl.models.Filter
 import com.example.seminariotp.ui.games.GamesRoute
 
 @Composable

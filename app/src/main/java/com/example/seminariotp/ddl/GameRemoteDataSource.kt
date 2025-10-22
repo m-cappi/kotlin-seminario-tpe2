@@ -1,10 +1,12 @@
 package com.example.seminariotp.ddl
 
+import android.widget.Toast
 import com.example.seminariotp.ddl.models.Game
 import com.example.seminariotp.ddl.models.Genre
 import com.example.seminariotp.ddl.models.Platform
 import com.example.seminariotp.ddl.models.Publisher
 import com.example.seminariotp.ddl.models.Store
+import com.example.seminariotp.ui.games.GamesRoute
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import java.lang.Exception
@@ -15,17 +17,45 @@ import javax.inject.Singleton
 class GameRemoteDataSource @Inject constructor(
     private val gameApi: GameApi
 ) {
-    suspend fun getGames(qty: Int): List<Game>? {
+    //    suspend fun getGames(qty: Int): List<Game>? {
+//        return withContext(Dispatchers.IO) {
+//            try {
+//                val response = gameApi.getGames(qty)
+//                if (response.isSuccessful) {
+//                    return@withContext response.body()?.results?.map { it.toDomain() }
+//                }
+//                return@withContext null
+//            } catch (e: Exception) {
+//                e.printStackTrace()
+//                return@withContext null
+//            }
+//        }
+//    }
+    suspend fun getGames(qty: Int, route: GamesRoute?): List<Game>? {
         return withContext(Dispatchers.IO) {
             try {
-                val response = gameApi.getGames(qty)
-                if (response.isSuccessful) {
-                    return@withContext response.body()?.results?.map { it.toDomain() }
+                val response = if (route == null) {
+                    gameApi.getGames(qty)
+                } else {
+                    val orderBy =
+                        if (route.isReverseOrder) "-${route.selectedOrderBy}" else route.selectedOrderBy
+                    val filters = route.categoryFilters?.joinToString(",")
+
+                    when (route.selectedCategory) {
+                        "Genres" -> gameApi.getGames(qty, orderBy, genres = filters)
+                        "Platforms" -> gameApi.getGames(qty, orderBy, platforms = filters)
+                        "Publishers" -> gameApi.getGames(qty, orderBy, publishers = filters)
+                        "Stores" -> gameApi.getGames(qty, orderBy, stores = filters)
+                        else -> gameApi.getGames(qty, orderBy)
+                    }
                 }
-                return@withContext null
+
+                if (response.isSuccessful) {
+                    response.body()?.results?.map { it.toDomain() }
+                } else null
             } catch (e: Exception) {
                 e.printStackTrace()
-                return@withContext null
+                null
             }
         }
     }

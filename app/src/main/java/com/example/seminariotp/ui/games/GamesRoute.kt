@@ -1,7 +1,6 @@
 package com.example.seminariotp.ui.games
 
 import android.os.Parcelable
-import kotlinx.serialization.Serializable
 import kotlinx.parcelize.Parcelize
 
 @Parcelize

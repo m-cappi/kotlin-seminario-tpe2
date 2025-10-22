@@ -5,6 +5,7 @@ import com.example.seminariotp.ddl.models.Genre
 import com.example.seminariotp.ddl.models.Platform
 import com.example.seminariotp.ddl.models.Publisher
 import com.example.seminariotp.ddl.models.Store
+import com.example.seminariotp.ui.games.GamesRoute
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -12,8 +13,8 @@ import javax.inject.Singleton
 class GameRepository @Inject constructor(
     private val gameRemoteDataSource: GameRemoteDataSource
 ) {
-    suspend fun getGames(qty: Int): List<Game>? {
-        return gameRemoteDataSource.getGames(qty)
+    suspend fun getGames(qty: Int, route: GamesRoute?): List<Game>? {
+        return gameRemoteDataSource.getGames(qty, route)
     }
 
     suspend fun getGenres(qty: Int): List<Genre>? {

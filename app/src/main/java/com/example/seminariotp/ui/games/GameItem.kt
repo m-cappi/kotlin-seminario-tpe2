@@ -4,13 +4,11 @@ import androidx.compose.foundation.layout.Arrangement
 import com.example.seminariotp.R
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -42,7 +40,10 @@ fun GameItem(
         )
 
         Column(
-            modifier = Modifier.fillMaxWidth().height(80.dp).padding(8.dp),
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(80.dp)
+                .padding(8.dp),
             horizontalAlignment = Alignment.Start,
             verticalArrangement = Arrangement.SpaceAround,
         ) {
@@ -52,9 +53,11 @@ fun GameItem(
             )
 //            Spacer(Modifier.height(20.dp))
             Row(
-                modifier = Modifier.fillMaxSize().padding(4.dp),
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(4.dp),
                 horizontalArrangement = Arrangement.SpaceAround,
-                ) {
+            ) {
                 Text(
                     text = "Rating: $rating"
                 )
