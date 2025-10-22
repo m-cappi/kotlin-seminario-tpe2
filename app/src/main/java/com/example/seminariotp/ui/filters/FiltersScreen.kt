@@ -23,12 +23,14 @@ fun FiltersScreen(
     val publishers by viewModel.publishers.collectAsStateWithLifecycle()
     val stores by viewModel.stores.collectAsStateWithLifecycle()
     val filtersMap = mapOf(
-        "Genres" to genres,
-        "Platforms" to platforms,
-        "Publishers" to publishers,
-        "Stores" to stores,
+        Category.Genres to genres,
+        Category.Platforms to platforms,
+        Category.Publishers to publishers,
+        Category.Stores to stores,
     )
-    val categories = listOf("Genres", "Platforms", "Publishers", "Stores")
+    val categories = listOf(
+        Category.Genres, Category.Platforms, Category.Publishers, Category.Stores
+    )
     var selectedCategory by remember { mutableStateOf(categories.first()) }
     var selectedFilters by remember { mutableStateOf(listOf<String>()) }
 
@@ -40,23 +42,20 @@ fun FiltersScreen(
 
     LaunchedEffect(selectedCategory, retryTrigger) {
         when (selectedCategory) {
-            "Genres" -> viewModel.getGenres(20)
-            "Platforms" -> viewModel.getPlatforms(20)
-            "Publishers" -> viewModel.getPublishers(20)
-            "Stores" -> viewModel.getStores(20)
+            Category.Genres -> viewModel.getGenres(20)
+            Category.Platforms -> viewModel.getPlatforms(20)
+            Category.Publishers -> viewModel.getPublishers(20)
+            Category.Stores -> viewModel.getStores(20)
         }
     }
 
     val onApplyFilters = {
-        // Create a GamesRoute object instead of building a string
         val route = GamesRoute(
-            selectedCategory = selectedCategory,
+            selectedCategory = selectedCategory.toString(),
             categoryFilters = selectedFilters,
             selectedOrderBy = selectedOrderBy,
             isReverseOrder = isReverseOrder
         )
-
-        // Call the lambda to navigate
         goGames(route)
     }
 

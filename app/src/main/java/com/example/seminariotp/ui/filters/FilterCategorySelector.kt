@@ -19,9 +19,9 @@ import androidx.compose.ui.unit.dp
 
 @Composable
 fun FilterCategorySelector(
-    categories: List<String>,
-    selectedCategory: String,
-    onCategorySelected: (String) -> Unit
+    categories: List<Category>,
+    selectedCategory: Category,
+    onCategorySelected: (Category) -> Unit
 ) {
     LazyRow(
         horizontalArrangement = Arrangement.spacedBy(8.dp),
@@ -41,7 +41,7 @@ fun FilterCategorySelector(
                     .animateContentSize()
             ) {
                 Text(
-                    text = category,
+                    text = category.toString(),
                     color = if (isSelected) Color.White else MaterialTheme.colorScheme.onSurface,
                     modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp)
                 )

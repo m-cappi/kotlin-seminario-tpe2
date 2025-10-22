@@ -20,11 +20,11 @@ import com.example.seminariotp.ddl.models.Filter
 fun FiltersContent(
     isLoading: Boolean,
     isError: Boolean,
-    filtersMap: Map<String, List<Filter>?>,
-    categories: List<String>,
-    selectedCategory: String,
+    filtersMap: Map<Category, List<Filter>?>,
+    categories: List<Category>,
+    selectedCategory: Category,
     selectedFilters: List<String>,
-    onCategorySelected: (String) -> Unit,
+    onCategorySelected: (Category) -> Unit,
     onSelectionChanged: (List<String>) -> Unit,
     orderByOptions: List<String>,
     selectedOrderBy: String,
@@ -33,10 +33,6 @@ fun FiltersContent(
     onApplyFilters: () -> Unit,
     onRetry: () -> Unit,
 ) {
-    // Example categories
-
-    // Currently selected category
-
     Column(
         modifier = Modifier
             .fillMaxWidth()
@@ -81,7 +77,6 @@ fun FiltersContent(
             }
         } else {
             MultiSelectFilterList(
-                category = selectedCategory,
                 filters = filtersMap[selectedCategory] ?: emptyList(),
                 selectedFilters = selectedFilters,
                 onSelectionChanged = onSelectionChanged

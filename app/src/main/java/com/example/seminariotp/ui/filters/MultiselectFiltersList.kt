@@ -12,7 +12,6 @@ import com.example.seminariotp.ddl.models.Filter
 
 @Composable
 fun MultiSelectFilterList(
-    category: String,
     filters: List<Filter>,
     selectedFilters: List<String>,
     onSelectionChanged: (List<String>) -> Unit
