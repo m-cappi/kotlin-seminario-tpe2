@@ -31,12 +31,6 @@ class MainActivity : ComponentActivity() {
                     val savedStateHandle = navBackStackEntry.savedStateHandle
                     val route: GamesRoute =
                         savedStateHandle.get<GamesRoute>("gamesRoute") ?: GamesRoute()
-//                    val route = navBackStackEntry.toRoute<GamesRoute>()
-//                    val category = backStackEntry.arguments?.getString("category") ?: ""
-//                    val filters =
-//                        backStackEntry.arguments?.getString("filters")?.split(",") ?: emptyList()
-//                    val orderBy = backStackEntry.arguments?.getString("orderBy") ?: ""
-//                    val isReverse = backStackEntry.arguments?.getBoolean("reverse") ?: false
                     GamesScreen(
                         viewModel = gameViewModel,
                         gamesRoute = route,
@@ -49,7 +43,10 @@ class MainActivity : ComponentActivity() {
                     FiltersScreen(
                         filtersViewModel,
                         goGames = { gamesRoute ->
-                            navController.navigate(gamesRoute)
+                            navController.currentBackStackEntry
+                                ?.savedStateHandle
+                                ?.set("gamesRoute", gamesRoute)
+                            navController.navigate(route = "games")
                         }
                     )
                 }

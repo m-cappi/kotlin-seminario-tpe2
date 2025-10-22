@@ -5,6 +5,7 @@ plugins {
     alias(libs.plugins.hilt)
     alias(libs.plugins.kapt)
     alias(libs.plugins.kotlin.serialization)
+    id("kotlin-parcelize")
 }
 val versionMajor = 1
 val versionMinor = 0
