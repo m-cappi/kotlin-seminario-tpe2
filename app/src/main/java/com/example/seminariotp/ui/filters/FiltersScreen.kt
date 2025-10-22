@@ -47,8 +47,9 @@ fun FiltersScreen(
     }
 
     val onApplyFilters = {
+        val selectedCategory = if (selectedFilters.isEmpty()) "" else selectedCategory.toString()
         val route = GamesRoute(
-            selectedCategory = selectedCategory.toString(),
+            selectedCategory = selectedCategory,
             categoryFilters = selectedFilters,
             selectedOrderBy = selectedOrderBy,
             isReverseOrder = isReverseOrder
