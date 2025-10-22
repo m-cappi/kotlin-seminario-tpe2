@@ -28,14 +28,11 @@ fun FiltersScreen(
         Category.Publishers to publishers,
         Category.Stores to stores,
     )
-    val categories = listOf(
-        Category.Genres, Category.Platforms, Category.Publishers, Category.Stores
-    )
+    val categories = Category.entries.map { it }
     var selectedCategory by remember { mutableStateOf(categories.first()) }
     var selectedFilters by remember { mutableStateOf(listOf<String>()) }
 
-    val orderByOptions =
-        listOf("name", "released", "added", "created", "updated", "rating", "metacritic")
+    val orderByOptions = OrderBy.entries.map { it.displayName() }
     var selectedOrderBy by remember { mutableStateOf("") }
     var isReverseOrder by remember { mutableStateOf(false) }
     var retryTrigger by remember { mutableIntStateOf(0) }

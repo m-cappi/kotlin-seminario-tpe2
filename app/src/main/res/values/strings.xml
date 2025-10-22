@@ -12,5 +12,11 @@
     <string name="category_platforms">Platforms</string>
     <string name="category_publishers">Publishers</string>
     <string name="category_stores">Stores</string>
-
+    <string name="order_name">name</string>
+    <string name="order_released">released</string>
+    <string name="order_added">added</string>
+    <string name="order_created">created</string>
+    <string name="order_updated">updated</string>
+    <string name="order_rating">rating</string>
+    <string name="order_metacritic">metacritic</string>
 </resources>
