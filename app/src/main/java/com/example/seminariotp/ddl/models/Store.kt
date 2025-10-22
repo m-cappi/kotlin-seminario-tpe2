@@ -1,9 +1,9 @@
 package com.example.seminariotp.ddl.models
 
 data class Store(
-    val id: Int? = null,
-    val name: String? = null,
-    val slug: String? = null,
+    override val id: Int,
+    override val name: String,
+    override val slug: String,
+    override val gamesCount: Int,
     val domain: String? = null,
-    val gamesCount: Int? = null,
-)
+) : Filter

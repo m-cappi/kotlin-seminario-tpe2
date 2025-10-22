@@ -6,17 +6,17 @@ import com.google.gson.annotations.SerializedName
 
 data class StoreDto(
     @SerializedName("id")
-    val id: Int? = null,
+    val id: Int,
     @SerializedName("name")
-    val name: String? = null,
+    val name: String,
     @SerializedName("slug")
-    val slug: String? = null,
+    val slug: String,
+    @SerializedName("games_count")
+    val gamesCount: Int,
     @SerializedName("domain")
     val domain: String? = null,
-    @SerializedName("games_count")
-    val gamesCount: Int? = null,
 ) {
     fun toDomain(): Store {
-        return Store(id, name, slug, domain, gamesCount)
+        return Store(id, name, slug, gamesCount, domain)
     }
 }

@@ -5,13 +5,13 @@ import com.google.gson.annotations.SerializedName
 
 data class GenreDto(
     @SerializedName("id")
-    val id: Int? = null,
+    val id: Int,
     @SerializedName("name")
-    val name: String? = null,
+    val name: String,
     @SerializedName("slug")
-    val slug: String? = null,
+    val slug: String,
     @SerializedName("games_count")
-    val gamesCount: Int? = null,
+    val gamesCount: Int,
 ) {
     fun toDomain(): Genre {
         return Genre(

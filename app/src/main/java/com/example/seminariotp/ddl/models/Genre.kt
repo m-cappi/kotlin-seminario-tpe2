@@ -1,8 +1,8 @@
 package com.example.seminariotp.ddl.models
 
 data class Genre(
-    val id: Int? = null,
-    val name: String? = null,
-    val slug: String? = null,
-    val gamesCount: Int? = null,
-)
+    override val id: Int,
+    override val name: String,
+    override val slug: String,
+    override val gamesCount: Int,
+) : Filter

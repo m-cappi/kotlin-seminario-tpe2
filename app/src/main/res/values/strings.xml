@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">SeminarioTP</string>
     <string name="refresh_games">Refresh</string>
+    <string name="apply">Apply</string>
 </resources>

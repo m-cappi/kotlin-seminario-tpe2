@@ -4,6 +4,7 @@ plugins {
     alias(libs.plugins.kotlin.compose)
     alias(libs.plugins.hilt)
     alias(libs.plugins.kapt)
+    alias(libs.plugins.kotlin.serialization)
 }
 val versionMajor = 1
 val versionMinor = 0
@@ -82,6 +83,7 @@ dependencies {
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
     implementation(libs.navigation.compose)
+    implementation(libs.kotlin.serialization)
 
     implementation(libs.hilt)
     kapt(libs.hilt.compiler)

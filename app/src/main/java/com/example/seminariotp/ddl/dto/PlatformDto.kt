@@ -5,17 +5,17 @@ import com.google.gson.annotations.SerializedName
 
 data class PlatformDto(
     @SerializedName("id")
-    val id: Int? = null,
-    @SerializedName("slug")
-    val slug: String? = null,
+    val id: Int,
     @SerializedName("name")
-    val name: String? = null,
+    val name: String,
+    @SerializedName("slug")
+    val slug: String,
     @SerializedName("games_count")
-    val gamesCount: Int? = null,
+    val gamesCount: Int,
 ) {
     fun toDomain(): Platform {
         return Platform(
-            id, slug, name, gamesCount
+            id, name, slug, gamesCount
         )
     }
 }

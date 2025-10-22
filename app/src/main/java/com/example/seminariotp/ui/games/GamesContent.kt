@@ -37,11 +37,11 @@ fun GamesContent(
     Column(modifier = Modifier.fillMaxSize()) {
         Spacer(modifier = Modifier.height(32.dp))
 
-        Row (
+        Row(
             modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.SpaceAround
-        ){
-            Button(onClick = onRefreshGames) {
+        ) {
+            Button(onClick = onRefreshGames, enabled = !isLoading) {
                 Text(
                     text = stringResource(R.string.refresh_games)
                 )
@@ -90,14 +90,16 @@ private fun PreviewGamesContent() {
                 imageUrl = "not found",
                 rating = 7.7,
                 platforms = listOf("pc"),
-            ),Game(
+            ),
+            Game(
                 id = 0,
                 name = "Best game",
                 releaseDate = "sometime ago",
                 imageUrl = "not found",
                 rating = 7.7,
                 platforms = listOf("pc"),
-            ),Game(
+            ),
+            Game(
                 id = 0,
                 name = "Best game",
                 releaseDate = "sometime ago",

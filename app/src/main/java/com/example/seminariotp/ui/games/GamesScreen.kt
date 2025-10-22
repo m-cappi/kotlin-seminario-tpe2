@@ -9,6 +9,7 @@ import com.example.seminariotp.GameViewModel
 @Composable
 fun GamesScreen(
     viewModel: GameViewModel,
+    gamesRoute: GamesRoute,
     goFilters: () -> Unit
 ) {
     val isLoading by viewModel.loading.collectAsStateWithLifecycle()

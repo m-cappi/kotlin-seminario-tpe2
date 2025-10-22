@@ -11,9 +11,9 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class GameViewModel @Inject  constructor(
+class GameViewModel @Inject constructor(
     private val gameRepository: GameRepository
-): ViewModel(){
+) : ViewModel() {
     private val _loading = MutableStateFlow(false)
     val loading = _loading.asStateFlow()
     private val _error = MutableStateFlow(false)
@@ -21,7 +21,7 @@ class GameViewModel @Inject  constructor(
     private val _games = MutableStateFlow<List<Game>?>(null)
     val games = _games.asStateFlow()
 
-    fun getGames(qty: Int){
+    fun getGames(qty: Int) {
         viewModelScope.launch {
             _loading.value = true
             _error.value = false

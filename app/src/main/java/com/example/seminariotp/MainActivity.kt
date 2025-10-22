@@ -8,29 +8,56 @@ import androidx.activity.viewModels
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.toRoute
+import com.example.seminariotp.ui.filters.FiltersScreen
+import com.example.seminariotp.ui.games.GamesRoute
 import com.example.seminariotp.ui.games.GamesScreen
 import dagger.hilt.android.AndroidEntryPoint
 import kotlin.getValue
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
-    private val viewModel: GameViewModel by viewModels()
+    private val gameViewModel: GameViewModel by viewModels()
+    private val filtersViewModel: FiltersViewModel by viewModels()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
             val navController = rememberNavController()
             NavHost(navController = navController, startDestination = "games") {
-                composable(route = "games") {
+                composable(
+                    route = "games",
+                ) { navBackStackEntry ->
+                    val savedStateHandle = navBackStackEntry.savedStateHandle
+                    val route: GamesRoute =
+                        savedStateHandle.get<GamesRoute>("gamesRoute") ?: GamesRoute()
+//                    val route = navBackStackEntry.toRoute<GamesRoute>()
+//                    val category = backStackEntry.arguments?.getString("category") ?: ""
+//                    val filters =
+//                        backStackEntry.arguments?.getString("filters")?.split(",") ?: emptyList()
+//                    val orderBy = backStackEntry.arguments?.getString("orderBy") ?: ""
+//                    val isReverse = backStackEntry.arguments?.getBoolean("reverse") ?: false
                     GamesScreen(
-                        viewModel = viewModel,
+                        viewModel = gameViewModel,
+                        gamesRoute = route,
                         goFilters = {
-//                            navController.navigate(route="filters")
+                            navController.navigate(route = "filters")
+                        }
+                    )
+                }
+                composable(route = "filters") {
+                    FiltersScreen(
+                        filtersViewModel,
+                        goGames = { gamesRoute ->
+                            navController.navigate(gamesRoute)
                         }
                     )
                 }
             }
 
+        }
+    }
+}
 //            SeminarioTPTheme {
 //                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
 //                    Greeting(
@@ -39,9 +66,6 @@ class MainActivity : ComponentActivity() {
 //                    )
 //                }
 //            }
-        }
-    }
-}
 
 //@Composable
 //fun Greeting(name: String, modifier: Modifier = Modifier) {
